@@ -50,8 +50,7 @@ export default function RegisterPage() {
         setError("Cuenta creada. Por favor inicia sesion.");
         router.push("/login");
       } else {
-        router.push("/questionnaire");
-        router.refresh();
+        window.location.href = "/questionnaire";
       }
     } catch {
       setError("Ocurrio un error. Intenta de nuevo.");

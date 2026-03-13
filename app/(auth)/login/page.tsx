@@ -2,11 +2,9 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function LoginPage() {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -27,8 +25,8 @@ export default function LoginPage() {
       if (result?.error) {
         setError("Credenciales invalidas. Verifica tu email y contrasena.");
       } else {
-        router.push("/dashboard");
-        router.refresh();
+        // Use window.location for full page reload so session updates everywhere
+        window.location.href = "/dashboard";
       }
     } catch {
       setError("Ocurrio un error. Intenta de nuevo.");
