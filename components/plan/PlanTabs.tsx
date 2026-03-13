@@ -26,12 +26,12 @@ export default function PlanTabs({ plan }: PlanTabsProps) {
   return (
     <div>
       {/* Tab navigation */}
-      <div className="flex gap-1 overflow-x-auto pb-1 mb-6 border-b border-gray-200">
+      <div className="flex gap-1 overflow-x-auto pb-1 mb-4 sm:mb-6 border-b border-gray-200 scrollbar-hide -mx-1 px-1">
         {TABS.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition ${
+            className={`px-3 sm:px-4 py-3 text-xs sm:text-sm font-medium whitespace-nowrap border-b-2 transition min-h-[44px] shrink-0 ${
               activeTab === tab.id
                 ? "border-emerald-600 text-emerald-600"
                 : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
@@ -47,8 +47,8 @@ export default function PlanTabs({ plan }: PlanTabsProps) {
         {/* RESUMEN */}
         {activeTab === "resumen" && (
           <div className="space-y-6">
-            <div className="bg-emerald-50 rounded-2xl p-6 border border-emerald-100">
-              <h3 className="text-lg font-bold text-emerald-800 mb-3">
+            <div className="bg-emerald-50 rounded-2xl p-4 sm:p-6 border border-emerald-100">
+              <h3 className="text-base sm:text-lg font-bold text-emerald-800 mb-3">
                 Resumen de tu Perfil
               </h3>
               <p className="text-emerald-700 leading-relaxed whitespace-pre-line">
@@ -57,7 +57,7 @@ export default function PlanTabs({ plan }: PlanTabsProps) {
             </div>
 
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4">
                 Macronutrientes Diarios
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -100,7 +100,7 @@ export default function PlanTabs({ plan }: PlanTabsProps) {
               >
                 <button
                   onClick={() => toggleDay(`meal-${day.day}`)}
-                  className="w-full flex items-center justify-between px-6 py-4 hover:bg-gray-50 transition"
+                  className="w-full flex items-center justify-between px-3 sm:px-6 py-3 sm:py-4 hover:bg-gray-50 transition min-h-[44px]"
                 >
                   <span className="font-bold text-gray-900">{day.day}</span>
                   <svg
@@ -120,14 +120,14 @@ export default function PlanTabs({ plan }: PlanTabsProps) {
                   </svg>
                 </button>
                 {expandedDays[`meal-${day.day}`] && (
-                  <div className="px-6 pb-4 space-y-4 border-t border-gray-100">
+                  <div className="px-3 sm:px-6 pb-4 space-y-4 border-t border-gray-100">
                     {day.meals.map((meal, idx) => (
                       <div key={idx} className="pt-4">
-                        <div className="flex items-center justify-between mb-2">
-                          <h4 className="font-semibold text-gray-800">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-1">
+                          <h4 className="font-semibold text-gray-800 text-sm sm:text-base">
                             {meal.name}
                           </h4>
-                          <span className="text-sm text-gray-500">
+                          <span className="text-xs sm:text-sm text-gray-500">
                             {meal.time} &middot; {meal.totalCalories} kcal
                           </span>
                         </div>
@@ -135,7 +135,7 @@ export default function PlanTabs({ plan }: PlanTabsProps) {
                           {meal.foods.map((food, fIdx) => (
                             <div
                               key={fIdx}
-                              className="flex items-center justify-between text-sm py-1 border-b border-gray-50 last:border-0"
+                              className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm py-1.5 sm:py-1 border-b border-gray-50 last:border-0"
                             >
                               <div>
                                 <span className="text-gray-800">
@@ -145,7 +145,7 @@ export default function PlanTabs({ plan }: PlanTabsProps) {
                                   {food.quantity}
                                 </span>
                               </div>
-                              <div className="flex gap-3 text-xs text-gray-500">
+                              <div className="flex gap-2 sm:gap-3 text-xs text-gray-500 mt-0.5 sm:mt-0">
                                 <span>{food.calories} kcal</span>
                                 <span>P: {food.protein}g</span>
                                 <span>C: {food.carbs}g</span>
@@ -192,11 +192,11 @@ export default function PlanTabs({ plan }: PlanTabsProps) {
               >
                 <button
                   onClick={() => toggleDay(`exercise-${day.day}`)}
-                  className="w-full flex items-center justify-between px-6 py-4 hover:bg-gray-50 transition"
+                  className="w-full flex items-center justify-between px-3 sm:px-6 py-3 sm:py-4 hover:bg-gray-50 transition min-h-[44px]"
                 >
                   <div className="text-left">
-                    <span className="font-bold text-gray-900">{day.day}</span>
-                    <span className="text-sm text-gray-500 ml-3">
+                    <span className="font-bold text-gray-900 text-sm sm:text-base">{day.day}</span>
+                    <span className="text-xs sm:text-sm text-gray-500 ml-2 sm:ml-3">
                       {day.focus} &middot; {day.duration} min
                     </span>
                   </div>
@@ -217,15 +217,15 @@ export default function PlanTabs({ plan }: PlanTabsProps) {
                   </svg>
                 </button>
                 {expandedDays[`exercise-${day.day}`] && (
-                  <div className="px-6 pb-4 border-t border-gray-100">
+                  <div className="px-3 sm:px-6 pb-4 border-t border-gray-100">
                     <div className="divide-y divide-gray-50">
                       {day.exercises.map((exercise, idx) => (
                         <div
                           key={idx}
-                          className="py-3 flex items-start justify-between"
+                          className="py-3 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-0"
                         >
                           <div>
-                            <p className="font-medium text-gray-800">
+                            <p className="font-medium text-gray-800 text-sm sm:text-base">
                               {exercise.name}
                             </p>
                             {exercise.notes && (
@@ -234,16 +234,16 @@ export default function PlanTabs({ plan }: PlanTabsProps) {
                               </p>
                             )}
                           </div>
-                          <div className="flex gap-3 text-sm text-gray-500 shrink-0 ml-4">
+                          <div className="flex flex-wrap gap-2 sm:gap-3 text-xs sm:text-sm text-gray-500 sm:shrink-0 sm:ml-4">
                             {exercise.sets && (
-                              <span>{exercise.sets} series</span>
+                              <span className="bg-gray-100 sm:bg-transparent rounded px-1.5 sm:px-0 py-0.5 sm:py-0">{exercise.sets} series</span>
                             )}
-                            {exercise.reps && <span>{exercise.reps} reps</span>}
+                            {exercise.reps && <span className="bg-gray-100 sm:bg-transparent rounded px-1.5 sm:px-0 py-0.5 sm:py-0">{exercise.reps} reps</span>}
                             {exercise.duration && (
-                              <span>{exercise.duration}</span>
+                              <span className="bg-gray-100 sm:bg-transparent rounded px-1.5 sm:px-0 py-0.5 sm:py-0">{exercise.duration}</span>
                             )}
                             {exercise.rest && (
-                              <span className="text-gray-400">
+                              <span className="bg-gray-100 sm:bg-transparent rounded px-1.5 sm:px-0 py-0.5 sm:py-0 text-gray-400">
                                 Desc: {exercise.rest}
                               </span>
                             )}

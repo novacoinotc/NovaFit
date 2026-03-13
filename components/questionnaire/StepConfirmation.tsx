@@ -74,10 +74,10 @@ function SummarySection({
 }) {
   return (
     <div className="rounded-xl border border-gray-200 overflow-hidden">
-      <div className="bg-gray-50 px-4 py-2.5 border-b border-gray-200">
+      <div className="bg-gray-50 px-3 sm:px-4 py-2.5 border-b border-gray-200">
         <h3 className="text-sm font-semibold text-gray-700">{title}</h3>
       </div>
-      <div className="px-4 py-3 space-y-1.5">{children}</div>
+      <div className="px-3 sm:px-4 py-3 space-y-1.5">{children}</div>
     </div>
   );
 }
