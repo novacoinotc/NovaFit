@@ -169,7 +169,7 @@ export async function generatePlan(data: QuestionnaireData): Promise<NutritionPl
 
   const message = await anthropic.messages.create({
     model: "claude-sonnet-4-20250514",
-    max_tokens: 8000,
+    max_tokens: 16000,
     messages: [
       {
         role: "user",
@@ -189,6 +189,48 @@ export async function generatePlan(data: QuestionnaireData): Promise<NutritionPl
     jsonText = jsonText.replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "");
   }
 
+  // If the response was truncated (stop_reason: max_tokens), try to repair the JSON
+  if (message.stop_reason === "end_turn") {
+    const plan: NutritionPlan = JSON.parse(jsonText);
+    return plan;
+  }
+
+  // Truncated response - attempt to close open JSON structures
+  console.warn("Response was truncated, attempting JSON repair...");
+  jsonText = repairTruncatedJson(jsonText);
   const plan: NutritionPlan = JSON.parse(jsonText);
   return plan;
+}
+
+function repairTruncatedJson(json: string): string {
+  // Remove any trailing incomplete string
+  let text = json.replace(/,\s*"[^"]*$/, "");
+  // Remove trailing comma
+  text = text.replace(/,\s*$/, "");
+
+  // Count open brackets/braces
+  let openBraces = 0;
+  let openBrackets = 0;
+  let inString = false;
+  let escape = false;
+
+  for (const char of text) {
+    if (escape) { escape = false; continue; }
+    if (char === "\\") { escape = true; continue; }
+    if (char === '"') { inString = !inString; continue; }
+    if (inString) continue;
+    if (char === "{") openBraces++;
+    if (char === "}") openBraces--;
+    if (char === "[") openBrackets++;
+    if (char === "]") openBrackets--;
+  }
+
+  // Close any open strings
+  if (inString) text += '"';
+
+  // Close open brackets and braces
+  for (let i = 0; i < openBrackets; i++) text += "]";
+  for (let i = 0; i < openBraces; i++) text += "}";
+
+  return text;
 }
