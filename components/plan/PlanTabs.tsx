@@ -269,7 +269,7 @@ export default function PlanTabs({ plan }: PlanTabsProps) {
             {plan.shoppingList.map((category) => (
               <div
                 key={category.category}
-                className="bg-white rounded-xl border border-gray-200 p-5"
+                className="bg-white rounded-xl border border-gray-200 p-3 sm:p-5"
               >
                 <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
                   <span className="w-2 h-2 bg-emerald-500 rounded-full" />
@@ -298,14 +298,14 @@ export default function PlanTabs({ plan }: PlanTabsProps) {
         {activeTab === "tips" && (
           <div className="space-y-8">
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4">
                 Tips Nutricionales
               </h3>
               <div className="space-y-3">
                 {plan.tips.map((tip, idx) => (
                   <div
                     key={idx}
-                    className="flex gap-3 bg-emerald-50 rounded-xl p-4 border border-emerald-100"
+                    className="flex gap-3 bg-emerald-50 rounded-xl p-3 sm:p-4 border border-emerald-100"
                   >
                     <div className="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
                       {idx + 1}
@@ -319,14 +319,14 @@ export default function PlanTabs({ plan }: PlanTabsProps) {
             </div>
 
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4">
                 Sustituciones Sugeridas
               </h3>
               <div className="space-y-3">
                 {plan.substitutions.map((sub, idx) => (
                   <div
                     key={idx}
-                    className="flex gap-3 bg-blue-50 rounded-xl p-4 border border-blue-100"
+                    className="flex gap-3 bg-blue-50 rounded-xl p-3 sm:p-4 border border-blue-100"
                   >
                     <svg
                       className="w-5 h-5 text-blue-600 shrink-0 mt-0.5"
@@ -367,12 +367,12 @@ function MacroCard({
   color: string;
 }) {
   return (
-    <div className={`rounded-xl border p-4 text-center ${color}`}>
-      <p className="text-2xl font-bold">
+    <div className={`rounded-xl border p-3 sm:p-4 text-center ${color}`}>
+      <p className="text-xl sm:text-2xl font-bold">
         {value.toLocaleString()}
-        <span className="text-sm font-normal ml-1">{unit}</span>
+        <span className="text-xs sm:text-sm font-normal ml-1">{unit}</span>
       </p>
-      <p className="text-sm font-medium mt-1">{label}</p>
+      <p className="text-xs sm:text-sm font-medium mt-1">{label}</p>
     </div>
   );
 }
