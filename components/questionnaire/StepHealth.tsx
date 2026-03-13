@@ -90,7 +90,7 @@ function ChipSelector({
           key={option}
           type="button"
           onClick={() => toggleOption(option)}
-          className={`px-3 py-1.5 rounded-full text-sm font-medium border transition ${
+          className={`px-3 py-2 sm:py-1.5 rounded-full text-sm font-medium border transition min-h-[44px] sm:min-h-0 ${
             selected.includes(option)
               ? "border-emerald-500 bg-emerald-50 text-emerald-700"
               : "border-gray-300 bg-white text-gray-600 hover:border-gray-400"
@@ -140,10 +140,10 @@ export default function StepHealth({ data, updateData }: StepProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
           Salud y Condiciones Médicas
         </h2>
-        <p className="text-gray-500 mt-1">
+        <p className="text-gray-500 mt-1 text-sm sm:text-base">
           Esta información es confidencial y nos ayuda a crear un plan seguro.
         </p>
       </div>

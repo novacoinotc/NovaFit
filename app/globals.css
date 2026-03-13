@@ -36,6 +36,68 @@ body {
   }
 }
 
+@layer utilities {
+  /* Hide scrollbar for horizontal scroll containers */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Print styles for PDF export */
+@media print {
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .print\:border-0 {
+    border: none !important;
+  }
+
+  .print\:mb-4 {
+    margin-bottom: 1rem !important;
+  }
+
+  header nav,
+  header button,
+  footer {
+    display: none !important;
+  }
+
+  /* Force all day sections open for printing */
+  details {
+    display: block !important;
+  }
+
+  details > summary {
+    display: none !important;
+  }
+
+  /* Clean page breaks */
+  .rounded-2xl {
+    break-inside: avoid;
+  }
+
+  /* Remove shadows and hover effects */
+  * {
+    box-shadow: none !important;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+}
+
 @layer components {
   .btn-primary {
     @apply bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98];
@@ -46,10 +108,32 @@ body {
   }
 
   .input-field {
-    @apply w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-800 placeholder-gray-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition bg-white;
+    @apply w-full rounded-xl border border-gray-300 px-3 sm:px-4 py-3 text-gray-800 placeholder-gray-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition bg-white;
   }
 
   .card {
-    @apply bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 p-6;
+    @apply bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 p-4 sm:p-6;
+  }
+}
+
+/* Touch-friendly form elements on mobile */
+@media (max-width: 640px) {
+  input[type="number"],
+  input[type="text"],
+  input[type="time"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    font-size: 16px; /* Prevent iOS zoom on focus */
+  }
+
+  button {
+    min-height: 44px; /* Apple HIG minimum touch target */
+  }
+
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
   }
 }

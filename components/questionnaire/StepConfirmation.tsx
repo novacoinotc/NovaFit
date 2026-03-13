@@ -164,10 +164,10 @@ export default function StepConfirmation({ data, updateData }: StepProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
           Confirma tus Respuestas
         </h2>
-        <p className="text-gray-500 mt-1">
+        <p className="text-gray-500 mt-1 text-sm sm:text-base">
           Revisa el resumen y ordena tus prioridades antes de generar tu plan.
         </p>
       </div>
@@ -344,8 +344,8 @@ export default function StepConfirmation({ data, updateData }: StepProps) {
       </div>
 
       {/* Priorities Ranking */}
-      <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-5">
-        <h3 className="text-lg font-bold text-gray-800 mb-1">
+      <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-3 sm:p-5">
+        <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-1">
           Ordena tus Prioridades
         </h3>
         <p className="text-sm text-gray-500 mb-4">
@@ -359,7 +359,7 @@ export default function StepConfirmation({ data, updateData }: StepProps) {
               key={option}
               type="button"
               onClick={() => togglePriority(option)}
-              className={`px-4 py-2 rounded-full text-sm font-medium border transition ${
+              className={`px-4 py-2.5 sm:py-2 rounded-full text-sm font-medium border transition min-h-[44px] sm:min-h-0 ${
                 priorities.includes(option)
                   ? "border-emerald-500 bg-emerald-100 text-emerald-700"
                   : "border-gray-300 bg-white text-gray-600 hover:border-gray-400"

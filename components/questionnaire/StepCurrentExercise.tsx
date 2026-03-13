@@ -24,8 +24,8 @@ export default function StepCurrentExercise({ data, updateData }: StepProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">Ejercicio Actual</h2>
-        <p className="text-gray-500 mt-1">
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">Ejercicio Actual</h2>
+        <p className="text-gray-500 mt-1 text-sm sm:text-base">
           Cuéntanos sobre tu actividad física actual.
         </p>
       </div>
@@ -44,7 +44,7 @@ export default function StepCurrentExercise({ data, updateData }: StepProps) {
               key={String(opt.value)}
               type="button"
               onClick={() => updateData({ currentlyExercising: opt.value })}
-              className={`flex-1 rounded-xl border p-4 text-center transition ${
+              className={`flex-1 rounded-xl border p-3 sm:p-4 text-center transition min-h-[44px] ${
                 data.currentlyExercising === opt.value
                   ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-500/20"
                   : "border-gray-300 bg-white hover:border-gray-400"
@@ -77,7 +77,7 @@ export default function StepCurrentExercise({ data, updateData }: StepProps) {
                   key={type}
                   type="button"
                   onClick={() => updateData({ currentExerciseType: type })}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium border transition ${
+                  className={`px-3 py-2 sm:py-1.5 rounded-full text-sm font-medium border transition min-h-[44px] sm:min-h-0 ${
                     data.currentExerciseType === type
                       ? "border-emerald-500 bg-emerald-50 text-emerald-700"
                       : "border-gray-300 bg-white text-gray-600 hover:border-gray-400"
@@ -90,18 +90,18 @@ export default function StepCurrentExercise({ data, updateData }: StepProps) {
           </div>
 
           {/* Frecuencia y duración */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Días por semana
               </label>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 {[1, 2, 3, 4, 5, 6, 7].map((n) => (
                   <button
                     key={n}
                     type="button"
                     onClick={() => updateData({ weeklyFrequency: n })}
-                    className={`w-10 h-10 rounded-xl border text-sm font-semibold transition ${
+                    className={`w-10 h-10 rounded-xl border text-sm font-semibold transition min-h-[44px] ${
                       data.weeklyFrequency === n
                         ? "border-emerald-500 bg-emerald-50 text-emerald-700"
                         : "border-gray-300 bg-white text-gray-600 hover:border-gray-400"
@@ -140,7 +140,7 @@ export default function StepCurrentExercise({ data, updateData }: StepProps) {
         <label className="block text-sm font-medium text-gray-700 mb-2">
           Nivel de experiencia con ejercicio
         </label>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             {
               value: "beginner" as const,
@@ -162,7 +162,7 @@ export default function StepCurrentExercise({ data, updateData }: StepProps) {
               key={opt.value}
               type="button"
               onClick={() => updateData({ exerciseExperience: opt.value })}
-              className={`rounded-xl border p-3 text-center transition ${
+              className={`rounded-xl border p-3 text-center transition min-h-[44px] ${
                 data.exerciseExperience === opt.value
                   ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-500/20"
                   : "border-gray-300 bg-white hover:border-gray-400"

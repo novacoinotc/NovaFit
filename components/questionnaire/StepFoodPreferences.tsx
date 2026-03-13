@@ -165,10 +165,10 @@ export default function StepFoodPreferences({ data, updateData }: StepProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
           Preferencias Alimenticias
         </h2>
-        <p className="text-gray-500 mt-1">
+        <p className="text-gray-500 mt-1 text-sm sm:text-base">
           Dinos qué te gusta comer para diseñar un plan que disfrutes.
         </p>
       </div>
@@ -184,7 +184,7 @@ export default function StepFoodPreferences({ data, updateData }: StepProps) {
               key={diet.value}
               type="button"
               onClick={() => updateData({ dietType: diet.value })}
-              className={`rounded-xl border p-3 text-left transition ${
+              className={`rounded-xl border p-3 text-left transition min-h-[44px] ${
                 data.dietType === diet.value
                   ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-500/20"
                   : "border-gray-300 bg-white hover:border-gray-400"
@@ -225,7 +225,7 @@ export default function StepFoodPreferences({ data, updateData }: StepProps) {
       />
 
       {/* Habilidad y tiempo de cocina */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Habilidad en la cocina:{" "}
@@ -275,7 +275,7 @@ export default function StepFoodPreferences({ data, updateData }: StepProps) {
         <label className="block text-sm font-medium text-gray-700 mb-2">
           Presupuesto para alimentación
         </label>
-        <div className="flex gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             {
               value: "low" as const,
@@ -297,7 +297,7 @@ export default function StepFoodPreferences({ data, updateData }: StepProps) {
               key={opt.value}
               type="button"
               onClick={() => updateData({ foodBudget: opt.value })}
-              className={`flex-1 rounded-xl border p-3 text-center transition ${
+              className={`rounded-xl border p-3 text-center transition min-h-[44px] ${
                 data.foodBudget === opt.value
                   ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-500/20"
                   : "border-gray-300 bg-white hover:border-gray-400"
@@ -331,7 +331,7 @@ export default function StepFoodPreferences({ data, updateData }: StepProps) {
               key={n}
               type="button"
               onClick={() => updateData({ mealsPerDay: n })}
-              className={`w-12 h-12 rounded-xl border text-sm font-semibold transition ${
+              className={`w-12 h-12 rounded-xl border text-sm font-semibold transition min-h-[44px] ${
                 data.mealsPerDay === n
                   ? "border-emerald-500 bg-emerald-50 text-emerald-700"
                   : "border-gray-300 bg-white text-gray-600 hover:border-gray-400"

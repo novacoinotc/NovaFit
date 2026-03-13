@@ -35,7 +35,7 @@ function FrequencySelector({
             key={opt.value}
             type="button"
             onClick={() => onChange(opt.value)}
-            className={`flex-1 rounded-xl border px-3 py-2.5 text-sm font-medium transition ${
+            className={`flex-1 rounded-xl border px-3 py-2.5 text-sm font-medium transition min-h-[44px] ${
               value === opt.value
                 ? "border-emerald-500 bg-emerald-50 text-emerald-700"
                 : "border-gray-300 bg-white text-gray-600 hover:border-gray-400"
@@ -93,10 +93,10 @@ export default function StepEmotional({ data, updateData }: StepProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
           Contexto Emocional
         </h2>
-        <p className="text-gray-500 mt-1">
+        <p className="text-gray-500 mt-1 text-sm sm:text-base">
           Entender tu relación con la comida nos ayuda a darte el mejor plan.
           Todo es confidencial.
         </p>

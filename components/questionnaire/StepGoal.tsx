@@ -59,10 +59,10 @@ export default function StepGoal({ data, updateData }: StepProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
           Objetivo Principal
         </h2>
-        <p className="text-gray-500 mt-1">
+        <p className="text-gray-500 mt-1 text-sm sm:text-base">
           Elige el objetivo que más se acerque a lo que quieres lograr.
         </p>
       </div>
@@ -74,7 +74,7 @@ export default function StepGoal({ data, updateData }: StepProps) {
             key={goal.value}
             type="button"
             onClick={() => updateData({ mainGoal: goal.value })}
-            className={`rounded-xl border p-4 text-left transition ${
+            className={`rounded-xl border p-3 sm:p-4 text-left transition min-h-[44px] ${
               data.mainGoal === goal.value
                 ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-500/20"
                 : "border-gray-300 bg-white hover:border-gray-400"
@@ -112,7 +112,7 @@ export default function StepGoal({ data, updateData }: StepProps) {
               key={timeline}
               type="button"
               onClick={() => updateData({ desiredTimeline: timeline })}
-              className={`px-4 py-2 rounded-full text-sm font-medium border transition ${
+              className={`px-4 py-2.5 sm:py-2 rounded-full text-sm font-medium border transition min-h-[44px] sm:min-h-0 ${
                 data.desiredTimeline === timeline
                   ? "border-emerald-500 bg-emerald-50 text-emerald-700"
                   : "border-gray-300 bg-white text-gray-600 hover:border-gray-400"

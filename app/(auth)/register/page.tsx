@@ -50,7 +50,7 @@ export default function RegisterPage() {
         setError("Cuenta creada. Por favor inicia sesion.");
         router.push("/login");
       } else {
-        router.push("/dashboard");
+        router.push("/questionnaire");
         router.refresh();
       }
     } catch {
@@ -65,7 +65,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-gray-50">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-gray-50 pt-16">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">

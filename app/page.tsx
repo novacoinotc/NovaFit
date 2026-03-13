@@ -1,38 +1,5 @@
 import Link from "next/link";
 
-function Navbar() {
-  return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">N</span>
-            </div>
-            <span className="text-xl font-bold text-gray-900">
-              Nova<span className="text-emerald-600">FIT</span>
-            </span>
-          </Link>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/login"
-              className="text-gray-600 hover:text-gray-900 font-medium text-sm"
-            >
-              Iniciar sesion
-            </Link>
-            <Link
-              href="/register"
-              className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm py-2 px-4 rounded-lg shadow-sm hover:shadow-md active:scale-[0.98]"
-            >
-              Registrarse
-            </Link>
-          </div>
-        </div>
-      </div>
-    </nav>
-  );
-}
-
 function HeroSection() {
   return (
     <section className="pt-32 pb-20 px-4">
@@ -239,7 +206,7 @@ function Footer() {
           </span>
         </div>
         <p className="text-sm text-gray-500">
-          2024 NovaFIT. Nutricion inteligente para todos.
+          {new Date().getFullYear()} NovaFIT. Nutricion inteligente para todos.
         </p>
       </div>
     </footer>
@@ -249,7 +216,7 @@ function Footer() {
 export default function HomePage() {
   return (
     <main className="min-h-screen">
-      <Navbar />
+      {/* Navbar is rendered globally from layout.tsx */}
       <HeroSection />
       <FeaturesSection />
       <HowItWorksSection />

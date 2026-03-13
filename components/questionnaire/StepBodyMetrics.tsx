@@ -29,10 +29,10 @@ export default function StepBodyMetrics({ data, updateData }: StepProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
           Métricas Corporales
         </h2>
-        <p className="text-gray-500 mt-1">
+        <p className="text-gray-500 mt-1 text-sm sm:text-base">
           Estas medidas son opcionales pero nos ayudan a ser más precisos.
         </p>
       </div>
@@ -62,7 +62,7 @@ export default function StepBodyMetrics({ data, updateData }: StepProps) {
       </div>
 
       {/* Medidas */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {[
           {
             key: "waistMeasurement" as const,
@@ -121,7 +121,7 @@ export default function StepBodyMetrics({ data, updateData }: StepProps) {
               key={type.value}
               type="button"
               onClick={() => updateData({ bodyType: type.value })}
-              className={`rounded-xl border p-4 text-left transition ${
+              className={`rounded-xl border p-3 sm:p-4 text-left transition min-h-[44px] ${
                 data.bodyType === type.value
                   ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-500/20"
                   : "border-gray-300 bg-white hover:border-gray-400"
@@ -145,7 +145,7 @@ export default function StepBodyMetrics({ data, updateData }: StepProps) {
       </div>
 
       {/* Historial de peso */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Peso hace 1 año (kg){" "}

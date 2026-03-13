@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { signOut } from "next-auth/react";
+import DeletePlanButton from "@/components/plan/DeletePlanButton";
 
 interface PlanSummary {
   id: string;
@@ -18,7 +18,7 @@ interface PlanSummary {
 }
 
 export default function DashboardPage() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   const [plans, setPlans] = useState<PlanSummary[]>([]);
   const [loading, setLoading] = useState(true);
@@ -59,32 +59,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">N</span>
-            </div>
-            <span className="text-lg font-bold text-gray-900">
-              Nova<span className="text-emerald-600">FIT</span>
-            </span>
-          </Link>
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-gray-500">
-              {session?.user?.name || session?.user?.email}
-            </span>
-            <button
-              onClick={() => signOut({ callbackUrl: "/" })}
-              className="text-sm text-gray-500 hover:text-gray-700 font-medium"
-            >
-              Cerrar sesion
-            </button>
-          </div>
-        </div>
-      </header>
-
+    <div className="min-h-screen bg-gray-50 pt-16">
       {/* Content */}
       <main className="max-w-5xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
@@ -158,68 +133,80 @@ export default function DashboardPage() {
                 }
               );
               return (
-                <Link
+                <div
                   key={plan.id}
-                  href={`/plan/${plan.id}`}
-                  className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-6 block"
+                  className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-6 relative"
                 >
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <span className="inline-block bg-emerald-50 text-emerald-700 text-xs font-medium px-2 py-1 rounded-full">
-                        Plan Completo
-                      </span>
-                      <p className="text-sm text-gray-400 mt-2">{date}</p>
-                    </div>
-                    <svg
-                      className="w-5 h-5 text-gray-400"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2}
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="m8.25 4.5 7.5 7.5-7.5 7.5"
-                      />
-                    </svg>
+                  <div className="absolute top-4 right-4 z-10">
+                    <DeletePlanButton
+                      planId={plan.id}
+                      variant="icon"
+                      onDeleted={() =>
+                        setPlans((prev) =>
+                          prev.filter((p) => p.id !== plan.id)
+                        )
+                      }
+                    />
                   </div>
-
-                  {plan.summary && (
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                      {plan.summary}
-                    </p>
-                  )}
-
-                  {plan.caloriesTarget && (
-                    <div className="grid grid-cols-4 gap-2">
-                      <div className="text-center bg-gray-50 rounded-lg py-2">
-                        <p className="text-sm font-bold text-gray-900">
-                          {plan.caloriesTarget}
-                        </p>
-                        <p className="text-xs text-gray-500">kcal</p>
+                  <Link href={`/plan/${plan.id}`} className="block">
+                    <div className="flex items-start justify-between mb-4 pr-8">
+                      <div>
+                        <span className="inline-block bg-emerald-50 text-emerald-700 text-xs font-medium px-2 py-1 rounded-full">
+                          Plan Completo
+                        </span>
+                        <p className="text-sm text-gray-400 mt-2">{date}</p>
                       </div>
-                      <div className="text-center bg-gray-50 rounded-lg py-2">
-                        <p className="text-sm font-bold text-gray-900">
-                          {plan.proteinTarget}g
-                        </p>
-                        <p className="text-xs text-gray-500">Proteina</p>
-                      </div>
-                      <div className="text-center bg-gray-50 rounded-lg py-2">
-                        <p className="text-sm font-bold text-gray-900">
-                          {plan.carbsTarget}g
-                        </p>
-                        <p className="text-xs text-gray-500">Carbs</p>
-                      </div>
-                      <div className="text-center bg-gray-50 rounded-lg py-2">
-                        <p className="text-sm font-bold text-gray-900">
-                          {plan.fatsTarget}g
-                        </p>
-                        <p className="text-xs text-gray-500">Grasas</p>
-                      </div>
+                      <svg
+                        className="w-5 h-5 text-gray-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                        />
+                      </svg>
                     </div>
-                  )}
-                </Link>
+
+                    {plan.summary && (
+                      <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                        {plan.summary}
+                      </p>
+                    )}
+
+                    {plan.caloriesTarget && (
+                      <div className="grid grid-cols-4 gap-2">
+                        <div className="text-center bg-gray-50 rounded-lg py-2">
+                          <p className="text-sm font-bold text-gray-900">
+                            {plan.caloriesTarget}
+                          </p>
+                          <p className="text-xs text-gray-500">kcal</p>
+                        </div>
+                        <div className="text-center bg-gray-50 rounded-lg py-2">
+                          <p className="text-sm font-bold text-gray-900">
+                            {plan.proteinTarget}g
+                          </p>
+                          <p className="text-xs text-gray-500">Proteina</p>
+                        </div>
+                        <div className="text-center bg-gray-50 rounded-lg py-2">
+                          <p className="text-sm font-bold text-gray-900">
+                            {plan.carbsTarget}g
+                          </p>
+                          <p className="text-xs text-gray-500">Carbs</p>
+                        </div>
+                        <div className="text-center bg-gray-50 rounded-lg py-2">
+                          <p className="text-sm font-bold text-gray-900">
+                            {plan.fatsTarget}g
+                          </p>
+                          <p className="text-xs text-gray-500">Grasas</p>
+                        </div>
+                      </div>
+                    )}
+                  </Link>
+                </div>
               );
             })}
           </div>

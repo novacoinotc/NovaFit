@@ -36,8 +36,8 @@ export default function StepPersonalData({ data, updateData }: StepProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">Datos Personales</h2>
-        <p className="text-gray-500 mt-1">
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">Datos Personales</h2>
+        <p className="text-gray-500 mt-1 text-sm sm:text-base">
           Cuéntanos sobre ti para personalizar tu plan.
         </p>
       </div>
@@ -57,7 +57,7 @@ export default function StepPersonalData({ data, updateData }: StepProps) {
       </div>
 
       {/* Edad y Sexo */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Edad
@@ -85,7 +85,7 @@ export default function StepPersonalData({ data, updateData }: StepProps) {
                 key={option.value}
                 type="button"
                 onClick={() => updateData({ biologicalSex: option.value })}
-                className={`flex-1 rounded-xl border px-4 py-3 text-sm font-medium transition ${
+                className={`flex-1 rounded-xl border px-3 sm:px-4 py-3 text-sm font-medium transition min-h-[44px] ${
                   data.biologicalSex === option.value
                     ? "border-emerald-500 bg-emerald-50 text-emerald-700"
                     : "border-gray-300 bg-white text-gray-600 hover:border-gray-400"
@@ -99,7 +99,7 @@ export default function StepPersonalData({ data, updateData }: StepProps) {
       </div>
 
       {/* Estatura y Peso */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Estatura (cm)

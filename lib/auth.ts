@@ -63,9 +63,19 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
       if (user) {
-        token.sub = user.id;
+        // For Google sign-in, look up the actual DB user ID
+        if (account?.provider === "google" && user.email) {
+          const dbUser = await prisma.user.findUnique({
+            where: { email: user.email },
+          });
+          if (dbUser) {
+            token.sub = dbUser.id;
+          }
+        } else {
+          token.sub = user.id;
+        }
       }
       return token;
     },

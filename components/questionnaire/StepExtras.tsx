@@ -11,10 +11,10 @@ export default function StepExtras({ data, updateData }: StepProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
           Detalles Adicionales
         </h2>
-        <p className="text-gray-500 mt-1">
+        <p className="text-gray-500 mt-1 text-sm sm:text-base">
           Últimos detalles para afinar tu plan personalizado.
         </p>
       </div>
@@ -38,7 +38,7 @@ export default function StepExtras({ data, updateData }: StepProps) {
         <label className="block text-sm font-medium text-gray-700 mb-2">
           ¿Qué tan estricto quieres que sea tu plan?
         </label>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             {
               value: "flexible" as const,
@@ -63,7 +63,7 @@ export default function StepExtras({ data, updateData }: StepProps) {
               key={opt.value}
               type="button"
               onClick={() => updateData({ planStrictness: opt.value })}
-              className={`rounded-xl border p-4 text-center transition ${
+              className={`rounded-xl border p-3 sm:p-4 text-center transition min-h-[44px] ${
                 data.planStrictness === opt.value
                   ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-500/20"
                   : "border-gray-300 bg-white hover:border-gray-400"
@@ -92,7 +92,7 @@ export default function StepExtras({ data, updateData }: StepProps) {
         <label className="block text-sm font-medium text-gray-700 mb-2">
           ¿Prefieres variedad o repetir comidas?
         </label>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
             {
               value: "variety" as const,
@@ -111,7 +111,7 @@ export default function StepExtras({ data, updateData }: StepProps) {
               key={opt.value}
               type="button"
               onClick={() => updateData({ varietyPreference: opt.value })}
-              className={`rounded-xl border p-4 text-center transition ${
+              className={`rounded-xl border p-3 sm:p-4 text-center transition min-h-[44px] ${
                 data.varietyPreference === opt.value
                   ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-500/20"
                   : "border-gray-300 bg-white hover:border-gray-400"
